@@ -1,0 +1,46 @@
+name: Questr Bot
+
+# Attenzione: le Actions girano in orario UTC e il cron può ritardare di
+# qualche minuto. Il bot decide da solo cosa fare in base all'ora locale
+# (vedi config.py -> TIMEZONE), quindi basta farlo girare abbastanza spesso.
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # ogni 30 min (sta nel free tier anche con repo PRIVATO)
+  workflow_dispatch:          # avvio manuale dalla scheda "Actions"
+
+permissions:
+  contents: write             # serve per salvare data/state.json nel repo
+
+concurrency:
+  group: questr-bot
+  cancel-in-progress: false   # niente esecuzioni sovrapposte (evita doppioni)
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installa dipendenze
+        run: pip install -r requirements.txt
+
+      - name: Esegui un tick del bot
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: python bot.py
+
+      - name: Salva lo stato aggiornato
+        run: |
+          git config user.name "questr-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/state.json
+          if git diff --cached --quiet; then
+            echo "Nessuna modifica allo stato."
+          else
+            git commit -m "update state [skip ci]"
+            git push
+          fi
