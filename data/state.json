@@ -1,0 +1,24 @@
+{
+  "last_update_id": 0,
+  "group_chat_id": null,
+  "bot_username": "sfidepaxxe_bot",
+  "admin_id": null,
+  "paused": false,
+  "quests": [],
+  "next_quest_id": 1,
+  "penitenze": [],
+  "players": {},
+  "next_player_seq": 1,
+  "pending": {},
+  "current": null,
+  "week_assignments": [],
+  "week_completions": [],
+  "active_polls": [],
+  "history": {
+    "last_daily_date": null,
+    "last_reminder_date": null,
+    "last_add_reminder_date": null,
+    "last_weekly_date": null,
+    "last_poll_close_date": null
+  }
+}
