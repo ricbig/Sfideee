@@ -1,23 +1,38 @@
 {
-  "last_update_id": 0,
-  "group_chat_id": null,
+  "last_update_id": 399346353,
+  "group_chat_id": -5368635260,
   "bot_username": "sfidepaxxe_bot",
-  "admin_id": null,
+  "admin_id": "7047115582",
   "paused": false,
   "quests": [],
   "next_quest_id": 1,
   "penitenze": [],
-  "players": {},
-  "next_player_seq": 1,
+  "players": {
+    "7047115582": {
+      "name": "Gallina#1",
+      "xp": 0,
+      "coins": 0,
+      "streak": 0,
+      "best_streak": 0,
+      "completed": 0,
+      "playing": true,
+      "last_completed_date": null,
+      "last_assigned_date": null,
+      "assigned_count": 0,
+      "inventory": [],
+      "equipped": {}
+    }
+  },
+  "next_player_seq": 2,
   "pending": {},
   "current": null,
   "week_assignments": [],
   "week_completions": [],
   "active_polls": [],
   "history": {
-    "last_daily_date": null,
+    "last_daily_date": "2026-07-16",
     "last_reminder_date": null,
-    "last_add_reminder_date": null,
+    "last_add_reminder_date": "2026-07-16",
     "last_weekly_date": null,
     "last_poll_close_date": null
   }
