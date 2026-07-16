@@ -1,5 +1,5 @@
 {
-  "last_update_id": 399346369,
+  "last_update_id": 399346370,
   "group_chat_id": -5368635260,
   "bot_username": "sfidepaxxe_bot",
   "admin_id": "7047115582",
@@ -24,7 +24,11 @@
     }
   },
   "next_player_seq": 2,
-  "pending": {},
+  "pending": {
+    "7047115582": {
+      "action": "add_quest"
+    }
+  },
   "current": null,
   "week_assignments": [],
   "week_completions": [],
