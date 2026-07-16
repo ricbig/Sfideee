@@ -1,11 +1,11 @@
-# 🐄 Questr Bot
+# 🐔 Questr Bot
 
 Bot Telegram di sfide giornaliere gamificate per un gruppo di amici, ispirato all'app Questr.
 Gira **senza PC acceso e senza hosting a pagamento**: usa GitHub Actions (un tick ogni 30 min).
 
 ## Come è organizzato
 
-- **Nel gruppo, a bottoni** → pannello, profilo/mucca, **negozio e acquisti**, classifica,
+- **Nel gruppo, a bottoni** → pannello, profilo/gallina, **negozio e acquisti**, classifica,
   nickname, sfida del giorno, consegne con foto/video, recap e voti.
 - **In chat privata col bot** → **solo** aggiunta di **sfide e penitenze**: restano segrete e
   vengono estratte **a sorteggio** (sorpresa per tutti). Qui l'**admin** può mettere in pausa.
@@ -15,9 +15,9 @@ Gira **senza PC acceso e senza hosting a pagamento**: usa GitHub Actions (un tic
 - Ogni giorno (tranne domenica) una sfida tocca a una persona **a rotazione equa**:
   tutti fanno lo stesso numero di turni.
 - La persona la fa, manda **foto/video** e tocca **✅ valida** (o risponde `/fatto`).
-- Si guadagnano **XP e coin**, la mucca sale di livello, cresce lo **streak** 🔥
+- Si guadagnano **XP e coin**, la gallina sale di livello, cresce lo **streak** 🔥
 - A metà giornata, chi non ha consegnato riceve un **promemoria privato** (solo lui/lei).
-- Con i coin si comprano **accessori per la mucca** dal negozio, nel gruppo.
+- Con i coin si comprano **accessori per la gallina** dal negozio, nel gruppo.
 - Il bot **ricorda periodicamente** di aggiungere nuove sfide/penitenze e **avvisa quando il
   repertorio è basso** (niente silenzi).
 - **Domenica**: riposo, recap, **voto** sulla sfida più bella e **penitenza votata** per chi ha saltato.
@@ -66,7 +66,7 @@ nickname. Entra subito nella rotazione **senza sbilanciarla** (parte allineata a
 
 - **Il token è sempre al sicuro** nei Secrets (cifrati), mai nel codice.
 - **Foto/video non vengono mai salvati** dal bot: restano su Telegram.
-- Il bot **non salva il nome vero**: nickname di default `Mucca#N`, modificabile.
+- Il bot **non salva il nome vero**: nickname di default `Gallina#N`, modificabile.
 
 Con i nickname puoi tenere **il repo pubblico** (minuti Actions illimitati; per risposte più
 rapide abbassa il cron a `*/10 * * * *` in `.github/workflows/questr.yml`). Se preferisci nascondere

@@ -1,7 +1,7 @@
 """Questr Bot — sfide giornaliere gamificate per un gruppo di amici.
 
 Gira "a tick" su GitHub Actions. Architettura:
-  • NEL GRUPPO (a bottoni): pannello, profilo/mucca, negozio e acquisti,
+  • NEL GRUPPO (a bottoni): pannello, profilo/gallina, negozio e acquisti,
     classifica, nickname, sfida del giorno, consegne, recap, voti.
   • IN PRIVATO col bot: SOLO aggiunta di sfide e penitenze (restano segrete
     e vengono estratte a sorteggio → sorpresa per tutti). Qui l'admin può
@@ -36,7 +36,7 @@ def is_rest_day():
 # ======================================================================
 def get_player(state, user):
     """Ottiene/crea il giocatore. Nessun nome vero: nickname di default
-    'Mucca#N' modificabile. I nuovi entrano nella rotazione senza raffiche
+    'Gallina#N' modificabile. I nuovi entrano nella rotazione senza raffiche
     (partono dal conteggio più alto attuale)."""
     uid = str(user["id"])
     if uid not in state["players"]:
@@ -65,14 +65,14 @@ def level_from_xp(xp):
 
 def cow_stage(level):
     if level < 3:
-        return "vitellino"
+        return "pulcino"
     if level < 6:
-        return "mucca giovane"
+        return "gallina giovane"
     if level < 10:
-        return "mucca in forma"
+        return "gallina in forma"
     if level < 15:
-        return "super mucca"
-    return "mucca leggendaria"
+        return "super gallina"
+    return "gallina leggendaria"
 
 
 def find_item(key):
@@ -96,7 +96,7 @@ def cow_line(player):
         it = find_item(iid) if iid else None
         if it:
             deco += it["emoji"]
-    return f"🐄{deco} · {cow_stage(lvl)} · Lv {lvl}"
+    return f"🐔{deco} · {cow_stage(lvl)} · Lv {lvl}"
 
 
 def xp_bar(xp):
@@ -138,7 +138,7 @@ def group_panel(state):
         "Gestisci tutto dai bottoni 👇"
     )
     buttons = [
-        [("🐄 La mia mucca", "open_profile"), ("🏪 Negozio", "open_shop")],
+        [("🐔 La mia gallina", "open_profile"), ("🏪 Negozio", "open_shop")],
         [("🏆 Classifica", "lb"), ("✏️ Nickname", deep_link(state, "nick"), "url")],
         [("➕ Aggiungi sfida", deep_link(state, "addquest"), "url"),
          ("😈 Aggiungi penitenza", deep_link(state, "addpen"), "url")],
@@ -151,7 +151,7 @@ def render_profile(player, uid):
     inv = player.get("inventory", [])
     owned = " ".join(find_item(i)["emoji"] for i in inv if find_item(i)) or "—"
     text = (
-        f"🐄 <b>{player['name']}</b>\n\n"
+        f"🐔 <b>{player['name']}</b>\n\n"
         f"{cow_line(player)}\n{xp_bar(player['xp'])}\n\n"
         f"🪙 Coin: <b>{player['coins']}</b>\n"
         f"🔥 Streak: <b>{player['streak']}</b> (record {player.get('best_streak', 0)})\n"
@@ -177,7 +177,7 @@ def render_shop(player, uid):
         else:
             lock = "🟢" if player["coins"] >= it["price"] else "🔒"
             buttons.append([(f"{lock} {it['emoji']} {it['name']} — {it['price']}🪙", f"buy:{it['id']}:{uid}")])
-    buttons.append([("🐄 Profilo", f"profile:{uid}"), ("✖️ Chiudi", f"close:{uid}")])
+    buttons.append([("🐔 Profilo", f"profile:{uid}"), ("✖️ Chiudi", f"close:{uid}")])
     return text, buttons
 
 
@@ -200,9 +200,9 @@ def help_text():
         f"Ogni giorno (tranne domenica) alle {config.DAILY_HOUR:02d}:00 una sfida tocca a "
         "una persona <b>a rotazione equa</b>: tutti fanno lo stesso numero di turni.\n"
         "Fai la sfida → manda <b>foto/video</b> nel gruppo → tocca <b>✅ valida</b>.\n\n"
-        "🏅 XP e coin, livelli della mucca, streak 🔥\n"
+        "🏅 XP e coin, livelli della gallina, streak 🔥\n"
         f"⏰ Alle {config.REMINDER_HOUR:02d}:00 un promemoria privato se non hai consegnato.\n"
-        "🏪 Coin → accessori per la mucca (qui nel gruppo).\n"
+        "🏪 Coin → accessori per la gallina (qui nel gruppo).\n"
         "🤫 <b>Sfide e penitenze si aggiungono in privato col bot</b>: restano segrete "
         "e vengono estratte a sorteggio.\n"
         "😴 <b>Domenica</b>: riposo, recap, voto sulla sfida più bella e penitenza per chi ha saltato."
@@ -357,7 +357,7 @@ def handle_command(state, msg, chat_id, ctype, is_private, user, uid, text):
         if player["name"].startswith(config.NICK_PREFIX + "#"):
             extra = f"\n\nVuoi un nickname invece di {player['name']}?"
             btns = [[("✏️ Scegli nickname", deep_link(state, "nick"), "url")]]
-        tg.send_message(chat_id, f"🐄 {player['name']} è nel gioco!{extra}", buttons=btns)
+        tg.send_message(chat_id, f"🐔 {player['name']} è nel gioco!{extra}", buttons=btns)
 
     elif cmd == "/esci":
         player["playing"] = False
@@ -392,7 +392,7 @@ def handle_command(state, msg, chat_id, ctype, is_private, user, uid, text):
     elif cmd == "/fatto":
         do_fatto_command(state, chat_id, msg, uid, player)
 
-    elif cmd in ("/mucca", "/profilo"):
+    elif cmd in ("/gallina", "/profilo"):
         t, b = render_profile(player, uid)
         tg.send_message(chat_id, t, buttons=b)
 
@@ -491,7 +491,7 @@ def add_pen(state, chat_id, text):
 
 def set_nick(state, chat_id, player, text):
     player["name"] = text[:24]
-    tg.send_message(chat_id, f"✏️ Ok! D'ora in poi sei <b>{player['name']}</b> 🐄")
+    tg.send_message(chat_id, f"✏️ Ok! D'ora in poi sei <b>{player['name']}</b> 🐔")
 
 
 def admin_set_pause(state, chat_id, uid, value):
@@ -503,11 +503,11 @@ def admin_set_pause(state, chat_id, uid, value):
     if value:
         tg.send_message(chat_id, "⏸️ Gioco in pausa. Niente sfide né promemoria finché non riprendi.")
         if group:
-            tg.send_message(group, "⏸️ <b>Questr in pausa</b> (modalità vacanza). Ci si rivede presto! 🏖️🐄")
+            tg.send_message(group, "⏸️ <b>Questr in pausa</b> (modalità vacanza). Ci si rivede presto! 🏖️🐔")
     else:
         tg.send_message(chat_id, "▶️ Gioco ripreso!")
         if group:
-            tg.send_message(group, "▶️ <b>Questr riparte!</b> Le sfide tornano da oggi. 🐄")
+            tg.send_message(group, "▶️ <b>Questr riparte!</b> Le sfide tornano da oggi. 🐔")
 
 
 # ======================================================================
@@ -534,7 +534,7 @@ def handle_callback(state, cb):
 
     # protezione: i pannelli personali sono di chi li ha aperti
     if owner and owner != uid:
-        ans("Questo è di un'altra persona — apri il tuo dal pannello 🐄", alert=True)
+        ans("Questo è di un'altra persona — apri il tuo dal pannello 🐔", alert=True)
         return
 
     # apertura pannelli personali (creano un messaggio nuovo per chi preme)
@@ -682,7 +682,7 @@ def maybe_daily(state):
     state["history"]["last_daily_date"] = today_str()
 
     if not active:
-        tg.send_message(group, "🐄 Nessun giocatore in rotazione! Scrivete <b>/entra</b> per giocare.")
+        tg.send_message(group, "🐔 Nessun giocatore in rotazione! Scrivete <b>/entra</b> per giocare.")
         return
     if not quests:
         tg.send_message(group, "📋 Repertorio vuoto! Aggiungete qualche sfida per iniziare 👇",
@@ -707,7 +707,7 @@ def maybe_daily(state):
 
     tg.send_message(
         group,
-        "🐄✨ <b>SFIDA DEL GIORNO</b> ✨🐄\n\n"
+        "🐔✨ <b>SFIDA DEL GIORNO</b> ✨🐔\n\n"
         f"👉 Tocca a <b>{player['name']}</b>!\n\n"
         f"🎯 {quest['text']}\n\n"
         "Fai la sfida, manda <b>foto o video</b> qui e tocca <b>✅ valida</b>.\n"
@@ -732,7 +732,7 @@ def maybe_reminder(state):
         int(uid),
         "⏰ <b>Psst… ci sei?</b>\n\n"
         f"La tua sfida di oggi è ancora da fare:\n🎯 {cur['quest_text']}\n\n"
-        "La mucca ti aspetta! 🐄 Manda foto/video nel gruppo e valida.",
+        "La gallina ti aspetta! 🐔 Manda foto/video nel gruppo e valida.",
     )
     if not res.get("ok"):
         print(f"[reminder] non riesco a scrivere in privato a {uid} (deve premere Start sul bot)")
@@ -767,9 +767,9 @@ def maybe_add_reminder(state):
             parti.append(f"restano solo <b>{nq}</b> sfide")
         if low_p:
             parti.append(f"solo <b>{npn}</b> penitenze")
-        msg = "🍽️ La mucca ha fame di idee: " + " e ".join(parti) + "!\nAggiungetene di nuove 👇"
+        msg = "🍽️ La gallina ha fame di idee: " + " e ".join(parti) + "!\nAggiungetene di nuove 👇"
     else:
-        msg = "💡 Promemoria: aggiungete <b>nuove sfide e penitenze</b> per tenere il gioco fresco! 🐄"
+        msg = "💡 Promemoria: aggiungete <b>nuove sfide e penitenze</b> per tenere il gioco fresco! 🐔"
 
     tg.send_message(group, msg, buttons=[
         [("➕ Aggiungi sfida", deep_link(state, "addquest"), "url"),
@@ -792,12 +792,12 @@ def maybe_weekly(state):
     state["active_polls"] = []
 
     if comps:
-        lines = ["📅 <b>RECAP DELLA SETTIMANA</b> 🐄", ""]
+        lines = ["📅 <b>RECAP DELLA SETTIMANA</b> 🐔", ""]
         for c in comps:
             lines.append(f"✅ <b>{c['player_name']}</b>: {c['quest_text']}")
         tg.send_message(group, "\n".join(lines))
     else:
-        tg.send_message(group, "📅 Questa settimana nessuna sfida completata... 🐄💤")
+        tg.send_message(group, "📅 Questa settimana nessuna sfida completata... 🐔💤")
 
     # voto sfida più bella
     if comps:

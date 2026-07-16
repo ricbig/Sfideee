@@ -15,7 +15,7 @@ DEFAULT_STATE = {
     "next_quest_id": 1,
     "penitenze": [],            # penitenze aggiunte dagli utenti
     "players": {},
-    "next_player_seq": 1,       # per i nickname di default "Mucca#N"
+    "next_player_seq": 1,       # per i nickname di default "Gallina#N"
     "pending": {},              # uid -> {"action": ...} per input privato
     "current": None,
     "week_assignments": [],

@@ -28,9 +28,9 @@ STREAK_BONUS_XP = 10       # XP extra per ogni giorno di streak
 STREAK_BONUS_CAP = 100     # tetto massimo del bonus streak
 POLL_WINNER_COINS = 30     # premio per chi vince il voto "sfida più bella"
 POLL_WINNER_XP = 50
-XP_PER_LEVEL = 250         # XP per salire di livello (la mucca cresce)
+XP_PER_LEVEL = 250         # XP per salire di livello (la gallina cresce)
 
-# --- Negozio: accessori per vestire la mucca ---
+# --- Negozio: accessori per vestire la gallina ---
 # slot = punto dove va indossato (uno alla volta per slot).
 # Modifica liberamente prezzi, emoji e oggetti.
 SHOP_ITEMS = [
@@ -44,7 +44,7 @@ SHOP_ITEMS = [
     {"id": "jetpack",     "name": "Jetpack",            "emoji": "🚀", "price": 300, "slot": "extra"},
     {"id": "arcobaleno",  "name": "Aura arcobaleno",    "emoji": "🌈", "price": 250, "slot": "extra"},
 ]
-# ordine con cui gli accessori indossati appaiono accanto alla mucca
+# ordine con cui gli accessori indossati appaiono accanto alla gallina
 SLOT_ORDER = ["testa", "occhi", "accessorio", "extra"]
 
 # --- Penitenze (votate dal gruppo la domenica) ---
@@ -54,7 +54,7 @@ PENITENZE = [
     "Fai 30 flessioni e mandane il video",
     "Posta la foto più imbarazzante che hai in galleria",
     "Racconta al gruppo una figuraccia vera che hai fatto",
-    "Fai il verso della mucca (muuu) camminando per strada, in video",
+    "Fai il verso della gallina (coccodè) camminando per strada, in video",
     "Scrivi un complimento sincero a ogni persona del gruppo",
     "Prepara qualcosa da mangiare e mandane la foto",
     "Manda un vocale imitando qualcuno del gruppo",
@@ -64,12 +64,12 @@ PENITENZE = [
 STATE_FILE = "data/state.json"
 
 # --- Estetica ---
-NICK_PREFIX = "Mucca"   # nickname di default: "Mucca#1", "Mucca#2"...
+NICK_PREFIX = "Gallina"   # nickname di default: "Gallina#1", "Gallina#2"...
 CELEBRATIONS = [
-    "La mucca fa un salto di gioia! 🐄🎉",
-    "MUUUU-eraviglioso! 🐄✨",
-    "La mucca ti ammira in silenzio. 🐄💖",
-    "Un altro traguardo per la mandria! 🏆",
-    "La mucca è fiera di te! 🐄👏",
-    "Erba extra per la mucca stasera! 🌱🐄",
+    "La gallina fa un salto di gioia! 🐔🎉",
+    "COCCODÈÈÈ-eraviglioso! 🐔✨",
+    "La gallina ti ammira in silenzio. 🐔💖",
+    "Un altro traguardo per il pollaio! 🏆",
+    "La gallina è fiera di te! 🐔👏",
+    "Mangime extra per la gallina stasera! 🌾🐔",
 ]
