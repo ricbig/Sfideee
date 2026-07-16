@@ -1,5 +1,5 @@
 {
-  "last_update_id": 399346372,
+  "last_update_id": 399346373,
   "group_chat_id": -5368635260,
   "bot_username": "sfidepaxxe_bot",
   "admin_id": "7047115582",
@@ -9,15 +9,20 @@
       "id": 1,
       "text": "Manda un vocale cantando le previsioni del tempo di oggi come se fossi un meteorologo drammatico",
       "author_name": "Gallina#1"
+    },
+    {
+      "id": 2,
+      "text": "Chiedi a uno sconosciuto di scattarti una foto in una posa ridicola a scelta sua",
+      "author_name": "Gallina#1"
     }
   ],
-  "next_quest_id": 2,
+  "next_quest_id": 3,
   "penitenze": [],
   "players": {
     "7047115582": {
       "name": "Gallina#1",
       "xp": 0,
-      "coins": 2,
+      "coins": 4,
       "streak": 0,
       "best_streak": 0,
       "completed": 0,
@@ -30,11 +35,7 @@
     }
   },
   "next_player_seq": 2,
-  "pending": {
-    "7047115582": {
-      "action": "add_quest"
-    }
-  },
+  "pending": {},
   "current": null,
   "week_assignments": [],
   "week_completions": [],
