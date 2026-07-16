@@ -50,14 +50,14 @@ SLOT_ORDER = ["testa", "occhi", "accessorio", "extra"]
 # --- Penitenze (votate dal gruppo la domenica) ---
 PENITENZA_OPTIONS = 4   # quante penitenze mettere al voto
 PENITENZE = [
-    "Manda un vocale in cui canti il ritornello di una canzone a caso",
-    "Fai 30 flessioni e mandane il video",
+    "Manda un vocale in cui canti il ritornello di I Will Survive",
+    "Fai 15 flessioni con un uovo sulla schiena o tra le chiappe, senza romperlo, e mandane il video",
     "Posta la foto più imbarazzante che hai in galleria",
-    "Racconta al gruppo una figuraccia vera che hai fatto",
     "Fai il verso della gallina (coccodè) camminando per strada, in video",
-    "Scrivi un complimento sincero a ogni persona del gruppo",
-    "Prepara qualcosa da mangiare e mandane la foto",
     "Manda un vocale imitando qualcuno del gruppo",
+    "Balla un giro di salsa (o qualsiasi ballo a caso) per strada e mandane il video",
+    "Fai un video in cui reciti una poesia a caso con tono drammatico da attore shakespeariano",
+    "Manda una foto vestito nel modo più ridicolo possibile e tienilo per un'ora, con prove fotografiche",
 ]
 
 # --- File di stato (salvato nel repo dalle Actions) ---
